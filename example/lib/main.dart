@@ -77,7 +77,7 @@ class _MyAppState extends State<MyApp> {
         ),
         pinKsn: '000002DDDDE00002'
     );
-    final res = await _parser.parseKimonoReversalRequest(terminalInfo, transactionInfo);
+    final res = await _parser.parseNIBBSPurchaseRequest(terminalInfo, transactionInfo);
     setState(() {
       data = res;
     });
