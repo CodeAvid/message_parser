@@ -20,7 +20,7 @@ dependencies:
     ```
  - Called its methods asynchronously. `e.g`
     ```flutter
-    Future<void> _parseNibssResponse(Uint8List response) async {
+    Future<dynamic> _parseNibssResponse(Uint8List response) async {
         return _parser.parseNIBBSResponse(response);
     }
     ```
