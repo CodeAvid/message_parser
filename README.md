@@ -5,8 +5,13 @@ A flutter library used to parse message request and response for both NIBBS serv
 ## Installation
 
 To install the plugin, add the line of code below under the dependencies section of your pubspec.yaml file.
+
 ```yaml
 dependencies:
   message_parser:
     git: https://github.com/Octacore19/message_parser.git
+```
 
+## Usage
+
+### Initialize the package
