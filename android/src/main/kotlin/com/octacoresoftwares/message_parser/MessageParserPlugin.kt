@@ -32,7 +32,7 @@ class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
             result.error("1-0-0", "Argument(s) is missing", null)
           }
         } catch (e: Exception) {
-          result.error("1-0-1", e.message, e.stackTrace)
+          result.error("1-0-1", e.message, e.stackTrace.toString())
         }
       }
       "parseKimonoReversalRequest" -> {
@@ -46,7 +46,7 @@ class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
             result.error("1-0-0", "Argument(s) is missing", null)
           }
         } catch (e: Exception) {
-          result.error("1-0-1", e.message, e.stackTrace)
+          result.error("1-0-1", e.message, e.stackTrace.toString())
         }
       }
       "parseNIBBSPurchaseRequest" -> {
@@ -60,7 +60,7 @@ class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
             result.error("1-0-0", "Argument(s) is missing", null)
           }
         } catch (e: Exception) {
-          result.error("1-0-1", e.message, e.stackTrace)
+          result.error("1-0-1", e.message, e.stackTrace.toString())
         }
       }
       "parseNIBBSReversalRequest" -> {
@@ -74,7 +74,7 @@ class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
             result.error("1-0-0", "Argument(s) is missing", null)
           }
         } catch (e: Exception) {
-          result.error("1-0-1", e.message, e.stackTrace)
+          result.error("1-0-1", e.message, e.stackTrace.toString())
         }
       }
       "parseNIBBSResponse" -> {
@@ -87,7 +87,7 @@ class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
             result.error("1-0-0", "Argument(s) is missing", null)
           }
         } catch (e: Exception) {
-          result.error("1-0-1", e.message, e.stackTrace)
+          result.error("1-0-1", e.message, e.stackTrace.toString())
         }
       }
       "parseNIBBSKeyRequest" -> {
@@ -101,7 +101,7 @@ class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
             result.error("1-0-0", "Argument(s) is missing", null)
           }
         } catch (e: Exception) {
-          result.error("1-0-1", e.message, e.stackTrace)
+          result.error("1-0-1", e.message, e.stackTrace.toString())
         }
       }
       "parseNIBBSKeyResponse" -> {
@@ -115,7 +115,7 @@ class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
             result.error("1-0-0", "Argument(s) is missing", null)
           }
         } catch (e: Exception) {
-          result.error("1-0-1", e.message, e.stackTrace)
+          result.error("1-0-1", e.message, e.stackTrace.toString())
         }
       }
       "parseNIBBSTerminalParameterRequest" -> {
@@ -128,7 +128,7 @@ class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
             result.error("1-0-0", "Argument(s) is missing", null)
           }
         } catch (e: Exception) {
-          result.error("1-0-1", e.message, e.stackTrace)
+          result.error("1-0-1", e.message, e.stackTrace.toString())
         }
       }
       "parseNIBBSTerminalParameterResponse" -> {
@@ -141,7 +141,7 @@ class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
             result.error("1-0-0", "Argument(s) is missing", null)
           }
         } catch (e: Exception) {
-          result.error("1-0-1", e.message, e.stackTrace)
+          result.error("1-0-1", e.message, e.stackTrace.toString())
         }
       }
       else -> result.notImplemented()
