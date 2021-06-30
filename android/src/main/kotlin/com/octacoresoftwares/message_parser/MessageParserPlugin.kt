@@ -10,22 +10,141 @@ import io.flutter.plugin.common.MethodChannel.Result
 
 /** MessageParserPlugin */
 class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
-  /// The MethodChannel that will the communication between Flutter and native Android
-  ///
-  /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-  /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
+  private lateinit var parser: IParser
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "message_parser")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "octacore.message_parser/parser")
     channel.setMethodCallHandler(this)
+    parser = Parser()
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    } else {
-      result.notImplemented()
+    when (call.method) {
+      "parseKimonoPurchaseRequest" -> {
+        try {
+          val terminalInfo = call.argument<HashMap<String, Any>>("terminalInfo")
+          val transactionInfo = call.argument<HashMap<String, Any>>("transactionInfo")
+          if (terminalInfo != null && transactionInfo != null) {
+            val response = parser.parseKimonoPurchaseRequest(terminalInfo, transactionInfo)
+            result.success(response)
+          } else {
+            result.error("1-0-0", "Argument(s) is missing", null)
+          }
+        } catch (e: Exception) {
+          result.error("1-0-1", e.message, null)
+        }
+      }
+      "parseKimonoReversalRequest" -> {
+        try {
+          val terminalInfo = call.argument<HashMap<String, Any>>("terminalInfo")
+          val transactionInfo = call.argument<HashMap<String, Any>>("transactionInfo")
+          if (terminalInfo != null && transactionInfo != null) {
+            val response = parser.parseKimonoReversalRequest(terminalInfo, transactionInfo)
+            result.success(response)
+          } else {
+            result.error("1-0-0", "Argument(s) is missing", null)
+          }
+        } catch (e: Exception) {
+          result.error("1-0-1", e.message, null)
+        }
+      }
+      "parseNIBBSPurchaseRequest" -> {
+        try {
+          val terminalInfo = call.argument<HashMap<String, Any>>("terminalInfo")
+          val transactionInfo = call.argument<HashMap<String, Any>>("transactionInfo")
+          if (terminalInfo != null && transactionInfo != null) {
+            val response = parser.parseNIBBSPurchaseRequest(terminalInfo, transactionInfo)
+            result.success(response)
+          } else {
+            result.error("1-0-0", "Argument(s) is missing", null)
+          }
+        } catch (e: Exception) {
+          result.error("1-0-1", e.message, null)
+        }
+      }
+      "parseNIBBSReversalRequest" -> {
+        try {
+          val terminalInfo = call.argument<HashMap<String, Any>>("terminalInfo")
+          val transactionInfo = call.argument<HashMap<String, Any>>("transactionInfo")
+          if (terminalInfo != null && transactionInfo != null) {
+            val response = parser.parseNIBBSReversalRequest(terminalInfo, transactionInfo)
+            result.success(response)
+          } else {
+            result.error("1-0-0", "Argument(s) is missing", null)
+          }
+        } catch (e: Exception) {
+          result.error("1-0-1", e.message, null)
+        }
+      }
+      "parseNIBBSResponse" -> {
+        try {
+          val nResponse = call.argument<ByteArray>("nResponse")
+          if (nResponse != null) {
+            val response = parser.parseNIBBSResponse(nResponse)
+            result.success(response)
+          } else {
+            result.error("1-0-0", "Argument(s) is missing", null)
+          }
+        } catch (e: Exception) {
+          result.error("1-0-1", e.message, null)
+        }
+      }
+      "parseNIBBSKeyRequest" -> {
+        try {
+          val terminalInfo = call.argument<HashMap<String, Any>>("terminalInfo")
+          val code = call.argument<String>("code")
+          if (terminalInfo != null && code != null) {
+            val response = parser.parseNIBBSKeyRequest(terminalInfo, code)
+            result.success(response)
+          } else {
+            result.error("1-0-0", "Argument(s) is missing", null)
+          }
+        } catch (e: Exception) {
+          result.error("1-0-1", e.message, null)
+        }
+      }
+      "parseNIBBSKeyResponse" -> {
+        try {
+          val nResponse = call.argument<ByteArray>("nResponse")
+          val key = call.argument<String>("key")
+          if (nResponse != null && key != null) {
+            val response = parser.parseNIBBSKeyResponse(nResponse, key)
+            result.success(response)
+          } else {
+            result.error("1-0-0", "Argument(s) is missing", null)
+          }
+        } catch (e: Exception) {
+          result.error("1-0-1", e.message, null)
+        }
+      }
+      "parseNIBBSTerminalParameterRequest" -> {
+        try {
+          val terminalInfo = call.argument<HashMap<String, Any>>("terminalInfo")
+          if (terminalInfo != null) {
+            val response = parser.parseNIBBSTerminalParameterRequest(terminalInfo)
+            result.success(response)
+          } else {
+            result.error("1-0-0", "Argument(s) is missing", null)
+          }
+        } catch (e: Exception) {
+          result.error("1-0-1", e.message, null)
+        }
+      }
+      "parseNIBBSTerminalParameterResponse" -> {
+        try {
+          val nResponse = call.argument<ByteArray>("nResponse")
+          if (nResponse != null) {
+            val response = parser.parseNIBBSTerminalParameterResponse(nResponse)
+            result.success(response)
+          } else {
+            result.error("1-0-0", "Argument(s) is missing", null)
+          }
+        } catch (e: Exception) {
+          result.error("1-0-1", e.message, null)
+        }
+      }
+      else -> result.notImplemented()
     }
   }
 
