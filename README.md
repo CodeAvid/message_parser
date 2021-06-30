@@ -4,6 +4,6 @@ A flutter library used to parse message request and response for both NIBBS serv
 
 ## Installation
 
-```flutter
+```yaml
 Install the plugin under the dependencies section of your pubspec.yaml file
 
