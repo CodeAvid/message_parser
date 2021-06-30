@@ -1,8 +1,8 @@
 package com.octacoresoftwares.message_parser
 
 interface IParser {
-    fun parseKimonoPurchaseRequest(terminalInfo: Map<String, Any>, transactionInfo: Map<String, Any>): Pair<Map<String, String>, String>
-    fun parseKimonoReversalRequest(terminalInfo: Map<String, Any>, transactionInfo: Map<String, Any>): Pair<Map<String, String>, String>
+    fun parseKimonoPurchaseRequest(terminalInfo: Map<String, Any>, transactionInfo: Map<String, Any>): Map<String, Any>
+    fun parseKimonoReversalRequest(terminalInfo: Map<String, Any>, transactionInfo: Map<String, Any>): Map<String, Any>
     fun parseNIBBSPurchaseRequest(terminalInfo: Map<String, Any>, transactionInfo: Map<String, Any>): ByteArray?
     fun parseNIBBSReversalRequest(terminalInfo: Map<String, Any>, transactionInfo: Map<String, Any>): ByteArray?
     fun parseNIBBSResponse(response: ByteArray): Map<String, Any>

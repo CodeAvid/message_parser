@@ -10,20 +10,22 @@ internal class Parser : IParser {
 
     override fun parseKimonoPurchaseRequest(
             terminalInfo: Map<String, Any>,
-            transactionInfo: Map<String, Any>): Pair<Map<String, String>, String> {
-        return MessageParser.getInstance().parseKimonoPurchaseRequest(
+            transactionInfo: Map<String, Any>): Map<String, Any> {
+        val result = MessageParser.getInstance().parseKimonoPurchaseRequest(
                 terminalInfo = TerminalInfo.fromMap(terminalInfo),
                 transactionInfo = TransactionInfo.fromMap(transactionInfo)
         )
+        return mapOf("first" to result.first, "second" to result.second)
     }
 
     override fun parseKimonoReversalRequest(
             terminalInfo: Map<String, Any>,
-            transactionInfo: Map<String, Any>): Pair<Map<String, String>, String> {
-        return MessageParser.getInstance().parseKimonoReversalRequest(
+            transactionInfo: Map<String, Any>): Map<String, Any> {
+        val result = MessageParser.getInstance().parseKimonoReversalRequest(
                 terminalInfo = TerminalInfo.fromMap(terminalInfo),
                 transactionInfo = TransactionInfo.fromMap(transactionInfo)
         )
+        return mapOf("first" to result.first, "second" to result.second)
     }
 
     override fun parseNIBBSPurchaseRequest(
