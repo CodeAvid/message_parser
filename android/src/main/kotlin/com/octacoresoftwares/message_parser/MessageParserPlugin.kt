@@ -11,12 +11,13 @@ import io.flutter.plugin.common.MethodChannel.Result
 /** MessageParserPlugin */
 class MessageParserPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
-  private lateinit var parser: IParser
+  private val parser: IParser by lazy {
+    Parser()
+  }
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "octacore.message_parser/parser")
     channel.setMethodCallHandler(this)
-    parser = Parser()
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {

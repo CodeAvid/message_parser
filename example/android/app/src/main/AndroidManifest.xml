@@ -2,7 +2,6 @@
     package="com.octacoresoftwares.message_parser_example">
 
     <application
-        android:name="com.octacoresoftwares.message_parser.ParserApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="message_parser_example">
