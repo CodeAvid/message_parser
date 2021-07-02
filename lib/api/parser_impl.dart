@@ -1,19 +1,22 @@
 import 'dart:developer';
 import 'dart:typed_data';
+import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:flutter/services.dart';
 import 'package:message_parser/index.dart';
 
 class Parser implements IParser {
-  static const _platform = const MethodChannel('octacore.message_parser/parser');
+  static const _platform =
+      const MethodChannel('octacore.message_parser/parser');
 
   @override
-  Future<Map<dynamic, dynamic>?> parseKimonoPurchaseRequest(
+  Future<Pair<Map<dynamic, dynamic>, String>?> parseKimonoPurchaseRequest(
       TerminalInfo terminalInfo, TransactionInfo transactionInfo) async {
     try {
-      return _platform.invokeMethod('parseKimonoPurchaseRequest', {
+      final result = await _platform.invokeMethod('parseKimonoPurchaseRequest', {
         'terminalInfo': terminalInfo.toJson(),
         'transactionInfo': transactionInfo.toJson()
       });
+      return Pair(result['first'], result['second']);
     } on PlatformException catch (e) {
       log(e.message.toString());
       throw 'Unable to parse terminal info with id ${terminalInfo.terminalId} because: ${e.message}';
@@ -21,13 +24,15 @@ class Parser implements IParser {
   }
 
   @override
-  Future<Map<dynamic, dynamic>?> parseKimonoReversalRequest(
+  Future<Pair<Map<dynamic, dynamic>, String>?> parseKimonoReversalRequest(
       TerminalInfo terminalInfo, TransactionInfo transactionInfo) async {
     try {
-      return _platform.invokeMethod('parseKimonoReversalRequest', {
+      final result =
+          await _platform.invokeMethod('parseKimonoReversalRequest', {
         'terminalInfo': terminalInfo.toJson(),
         'transactionInfo': transactionInfo.toJson()
       });
+      return Pair(result['first'], result['second']);
     } on PlatformException catch (e) {
       log(e.message.toString());
       throw 'Unable to parse terminal info with id ${terminalInfo.terminalId} because: ${e.message}';

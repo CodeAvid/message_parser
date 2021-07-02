@@ -1,9 +1,10 @@
 import 'dart:typed_data';
+import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:message_parser/index.dart';
 
 abstract class IParser {
- Future<Map<dynamic, dynamic>?> parseKimonoPurchaseRequest(TerminalInfo terminalInfo, TransactionInfo transactionInfo);
- Future<Map<dynamic, dynamic>?> parseKimonoReversalRequest(TerminalInfo terminalInfo, TransactionInfo transactionInfo);
+ Future<Pair<Map<dynamic, dynamic>, String>?> parseKimonoPurchaseRequest(TerminalInfo terminalInfo, TransactionInfo transactionInfo);
+ Future<Pair<Map<dynamic, dynamic>, String>?> parseKimonoReversalRequest(TerminalInfo terminalInfo, TransactionInfo transactionInfo);
  Future<Uint8List?> parseNIBBSPurchaseRequest(TerminalInfo terminalInfo, TransactionInfo transactionInfo);
  Future<Uint8List?> parseNIBBSReversalRequest(TerminalInfo terminalInfo, TransactionInfo transactionInfo);
  Future<TransactionResponse> parseNIBBSResponse(Uint8List response);
