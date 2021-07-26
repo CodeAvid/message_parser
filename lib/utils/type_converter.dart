@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:message_parser/index.dart';
 
 String toString(AccountType? type) {
@@ -26,4 +29,13 @@ AccountType toAccountType(String value) {
     default:
       return AccountType.Default;
   }
+}
+
+String buildIccString(List<Pair<ICCData, Uint8List?>> tagValue) {
+  String res = '';
+  tagValue.forEach((element) {
+    final secondValue = element.last;
+    // final tag = element.first.tag;
+  });
+  return res;
 }
